@@ -26,4 +26,24 @@ class TaskController extends Controller
             'controller_name' => 'TaskController',
         ]);
     }
+    
+    /**
+     * @Route("/task/create", name="task_create")
+     */
+    public function create()
+    {
+        return $this->render('task/view.html.twig', [
+            'controller_name' => 'TaskController',
+        ]);
+    }
+    
+    /**
+     * @Route("/task/update", name="task_update")
+     */
+    public function update()
+    {
+        return $this->render('task/update.html.twig', [
+            'controller_name' => 'TaskController',
+        ]);
+    }
 }

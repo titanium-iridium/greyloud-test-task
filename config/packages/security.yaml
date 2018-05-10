@@ -1,12 +1,8 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-#        Symfony\Component\Security\Core\User\User:
-#            algorithm: bcrypt
         Symfony\Component\Security\Core\User\User: plaintext
-            
-        App\Entity\User:
-            algorithm: bcrypt
+        App\Entity\User: bcrypt
 
     providers:
         user_provider:
@@ -16,8 +12,8 @@ security:
         in_memory:
             memory:
                 users:
-                    admin:
-                        password: admin
+                    test:
+                        password: test
                         roles: [ROLE_USER, ROLE_ADMIN]
 
         db_users:
@@ -44,20 +40,24 @@ security:
             # Reference: https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
                 # The route name that the login form submits to
-                check_path: site_login
+#                check_path: site_login
+                check_path: site_index
                 
                 # The name of the route where the login form lives
                 # When the user tries to access a protected page, they are redirected here
-                login_path: site_login
+#                login_path: site_login
+                login_path: site_index
                 
                 # Secure the login form against CSRF
                 # Reference: https://symfony.com/doc/current/security/csrf_in_login_form.html
+#                TODO
 #                csrf_token_generator: security.csrf.token_manager
 
                 # The page users are redirect to when there is no previous page stored in the
                 # session (for example when the users access directly to the login page).
                 default_target_path: site_index
-                
+
+                # if true, forward the user to the login form instead of redirecting
                 use_forward: false
 
             logout:
@@ -88,7 +88,8 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         
+#        - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
 #        - { path: ^/task, roles: IS_AUTHENTICATED_REMEMBERED }

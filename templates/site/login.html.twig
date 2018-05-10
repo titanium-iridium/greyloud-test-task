@@ -3,33 +3,71 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Login</h1>
+    <div class="container">
+        <h1>Login</h1>
 
-    {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    
-    <form method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
-    
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
-    
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input type="hidden" name="_target_path" value="/account" />
-        #}
-    
-        <button type="submit">login</button>
-    </form>
-    
-</div>
+        <div class="row">
+
+            {#{{ form_start(form) }}#}
+            {#{{ form_widget(form) }}#}
+            {#{{ form_end(form) }}#}
+
+            {#<div class="col-12 col-md-8 alert-info">.col-12 .col-md-8</div>#}
+            {#<div class="col-6 col-md-4 alert-info">.col-6 .col-md-4</div>#}
+
+            {#<div class="col-12 col-sm-8 alert-success">.col-12 .col-sm-8</div>#}
+            {#<div class="col-6 col-sm-4 alert-success">.col-6 .col-sm-4</div>#}
+
+            {#<div class="col-12 col-lg-8 alert-danger">.col-12 .col-lg-8</div>#}
+            {#<div class="col-6 col-lg-4 alert-danger">.col-6 .col-lg-4</div>#}
+
+            <div class="col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                <div class="well">
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    {#<form action="{{ path('site_login') }}" method="post">#}
+                        {#<div class="form-group">#}
+                            {#<label for="username">Username or E-mail</label>#}
+                            {#<input type="text" id="username" name="_username" value="{{ last_username }}"#}
+                                   {#class="form-control"/>#}
+                        {#</div>#}
+                        {#<div class="form-group">#}
+                            {#<label for="password">Password</label>#}
+                            {#<input type="password" id="password" name="_password" class="form-control"/>#}
+                        {#</div>#}
+                        {#<input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>#}
+                        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
+                        {#<button type="submit" class="btn btn-primary">#}
+                            {#<i class="fa fa-sign-in" aria-hidden="true"></i> Login#}
+                        {#</button>#}
+                    {#</form>#}
+
+
+                    {% if form %}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {#{{ form_row(form.username) }}#}
+                        {#{{ form_row(form.email) }}#}
+                        {#{{ form_row(form.plainPassword.first) }}#}
+                        {#{{ form_row(form.plainPassword.second) }}#}
+                        {#{{ form_row(form.password) }}#}
+
+                        <input type="submit" class="btn btn-primary" value="Login">
+                        {{ form_end(form) }}
+                    {% endif %}
+
+                </div>
+            </div>
+
+            {#<div class="col-6 col-sm-auto"><span class="btn btn-info">auto</span></div>#}
+            {#<div class="col"><span class="btn btn-info w-100">auto</span></div>#}
+
+        </div>
+
+    </div>
 {% endblock %}

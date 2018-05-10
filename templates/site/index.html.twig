@@ -3,18 +3,51 @@
 {% block title %}Hello {{ controller_name }}!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container">
+        <h1>Hello</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/SiteController.php'|file_link(0) }}">src/Controller/SiteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/site/index.html.twig'|file_link(0) }}">templates/site/index.html.twig</a></code></li>
-    </ul>
-</div>
+        This is a simple task manager.<br>
+        Credentials for testing: <code>test/test</code>
+
+        <hr>
+        <p class="text-justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut rhoncus massa. Duis venenatis gravida
+            venenatis. Phasellus commodo est id libero venenatis, tincidunt efficitur lorem efficitur. Vivamus feugiat
+            nibh ut ipsum porttitor, ut accumsan nulla laoreet. Nunc dapibus ipsum et mi dignissim aliquet. Mauris non
+            ante eget odio molestie hendrerit nec non enim. Donec sagittis sapien tortor, et cursus urna eleifend quis.
+            Fusce malesuada massa a augue dictum, sit amet consectetur elit varius. Pellentesque convallis tempor orci
+            ut ultricies. Phasellus at leo lacinia, mattis leo sit amet, ultrices nisl.
+
+            Sed pretium vestibulum diam, mollis finibus ante aliquet a. Donec nec velit finibus mauris volutpat
+            sollicitudin. Maecenas nec felis id lacus maximus mattis. Etiam id consequat est. Donec laoreet auctor diam
+            at dignissim. Fusce eu porttitor nisl. Proin egestas consequat finibus. In quis vehicula sem. Pellentesque
+            eget lectus consectetur, blandit justo sed, gravida massa.
+
+            Nam placerat vulputate accumsan. Aliquam vel fermentum est. Praesent elementum diam non velit faucibus
+            pretium. Nunc id mauris ullamcorper, volutpat arcu in, tempus augue. Orci varius natoque penatibus et magnis
+            dis parturient montes, nascetur ridiculus mus. Aliquam facilisis fermentum malesuada. Proin ut orci lacinia,
+            fermentum justo quis, molestie tellus. Nullam sagittis lectus a velit tempor, vitae aliquet nisi interdum.
+            Etiam suscipit vestibulum fringilla. Donec convallis tempor felis et consectetur. Sed molestie purus id
+            hendrerit ultrices. Aliquam ac libero libero. Donec facilisis pulvinar iaculis.
+
+            In hendrerit ipsum quis odio tincidunt porttitor vitae gravida ipsum. Maecenas mollis convallis ultricies.
+            Aliquam id enim congue, sollicitudin nisl eu, porta orci. Nulla sapien orci, lobortis eu lorem eu, imperdiet
+            porta risus. Nunc non erat blandit, sodales nulla eu, lacinia ex. Mauris vitae ante eu ante auctor dapibus.
+            Pellentesque dapibus venenatis arcu non eleifend. Pellentesque gravida risus vel felis cursus, dictum
+            maximus risus hendrerit. Morbi sed mattis risus. Praesent fringilla, tellus non elementum aliquet, elit
+            sapien porttitor justo, in condimentum nulla sapien id augue.
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Quisque porta id lacus a rutrum.
+            Praesent lectus dolor, porta quis dui nec, luctus tempus risus. Suspendisse quis orci volutpat, semper nisi
+            sed, fringilla nunc. Curabitur feugiat tincidunt hendrerit. Vivamus luctus bibendum commodo. Quisque
+            sodales, mi non pellentesque venenatis, ipsum leo dictum elit, quis porttitor dolor ipsum quis ante. Morbi a
+            libero eget nibh viverra vehicula.
+        </p>
+
+        {#<ul>#}
+        {#<li>Your controller at <code><a href="{{ 'src/Controller/SiteController.php'|file_link(0) }}">src/Controller/SiteController.php</a></code></li>#}
+        {#<li>Your template at <code><a href="{{ 'templates/site/index.html.twig'|file_link(0) }}">templates/site/index.html.twig</a></code></li>#}
+        {#</ul>#}
+    </div>
 {% endblock %}

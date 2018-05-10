@@ -1,0 +1,12 @@
+<nav class="nav nav-pills">
+    <a class="nav-item nav-link" href="{{ path('site_index') }}">Home</a>
+    <a class="nav-item nav-link" href="{{ path('task_index') }}">Tasks</a>
+    <a class="nav-item nav-link" href="{{ path('task_create') }}">New task</a>
+    
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a class="nav-item nav-link" href="{{ path('site_logout') }}">Logout</a>
+    {% else %}
+        {#<a class="nav-item nav-link" href="{{ path('site_login') }}">Login</a>#}
+        <a class="nav-item nav-link" href="{{ path('site_register') }}">Register</a>
+    {% endif %}
+</nav>

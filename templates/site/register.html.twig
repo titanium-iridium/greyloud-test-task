@@ -1,16 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Register</h1>
-
     
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                <div class="well">
+                    <h1>Register</h1>
+                    
+                    {% if form %}
+                        {{ form_start(form) }}
+                        {{ form_row(form.username) }}
+                        {#{{ form_row(form.email) }}#}
+                        {#{{ form_row(form.plainPassword.first) }}#}
+                        {#{{ form_row(form.plainPassword.second) }}#}
+                        {{ form_row(form.plainPassword) }}
+    
+                        <input type="submit" class="btn btn-primary" value="Register">
+                        {{ form_end(form) }}
+                    {%  endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
