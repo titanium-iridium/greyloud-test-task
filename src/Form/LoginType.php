@@ -29,7 +29,7 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('_username', TextType::class)
+            ->add('_username', TextType::class, ['label' => 'E-mail'])
             ->add('_password', PasswordType::class)
             ->add('_target_path', 'Symfony\Component\Form\Extension\Core\Type\HiddenType');
         $authUtils = $this->authenticationUtils;

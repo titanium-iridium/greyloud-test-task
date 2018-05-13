@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="`user`")
- * @UniqueEntity(fields="username", message="Username/E-mail already taken")
+ * @UniqueEntity(fields="username", message="E-mail already taken")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
@@ -213,5 +213,11 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
-
+    
+    /**
+     * Generates the magic method
+     */
+    public function __toString(): string {
+        return $this->username;
+    }
 }

@@ -3,12 +3,13 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+    <h1>Register new user</h1>
     
-    <div class="container">
+    {#<div class="container">#}
         <div class="row">
             <div class="col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                <div class="well">
-                    <h1>Register</h1>
+                {#<div class="well">#}
+                    
                     
                     {% if form %}
                         {{ form_start(form) }}
@@ -18,12 +19,12 @@
                         {#{{ form_row(form.plainPassword.second) }}#}
                         {{ form_row(form.plainPassword) }}
     
-                        <input type="submit" class="btn btn-primary" value="Register">
+                        <input type="submit" class="btn btn-info" value="Register">
                         {{ form_end(form) }}
                     {%  endif %}
 
-                </div>
+                {#</div>#}
             </div>
         </div>
-    </div>
+    {#</div>#}
 {% endblock %}

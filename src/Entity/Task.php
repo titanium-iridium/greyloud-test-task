@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Task
 {
@@ -24,7 +25,7 @@ class Task
     private $title;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $created;
 
@@ -49,6 +50,19 @@ class Task
         $this->comments = new ArrayCollection();
     }
 
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateTimestamps()
+    {
+        $this->setUpdated(new \DateTime('now'));
+
+        if ($this->getCreated() === null) {
+            $this->setCreated(new \DateTime('now'));
+        }
+    }
+
     public function getId()
     {
         return $this->id;
@@ -66,12 +80,12 @@ class Task
         return $this;
     }
 
-    public function getCreated(): ?\DateTimeImmutable
+    public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setCreated(\DateTimeImmutable $created): self
+    public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
 
@@ -123,6 +137,14 @@ class Task
     {
         return $this->comments;
     }
+    
+    /**
+     * @return null|Comment
+     */
+//    public function getLongestComment(): Comment
+//    {
+//        $this->comments;
+//    }
 
     public function addComment(Comment $comment): self
     {

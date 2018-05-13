@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="container">
+    {#<div class="container">#}
         <h1>Login</h1>
 
         <div class="row">
@@ -22,8 +22,8 @@
             {#<div class="col-12 col-lg-8 alert-danger">.col-12 .col-lg-8</div>#}
             {#<div class="col-6 col-lg-4 alert-danger">.col-6 .col-lg-4</div>#}
 
-            <div class="col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                <div class="well">
+            <div class="col-10 col-sm-7 col-md-6 col-lg-5 col-xl-4">
+                {#<div class="well">#}
                     {% if error %}
                         <div class="alert alert-danger">
                             {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -57,7 +57,7 @@
                         {#{{ form_row(form.plainPassword.second) }}#}
                         {#{{ form_row(form.password) }}#}
 
-                        <input type="submit" class="btn btn-primary" value="Login">
+                        <input type="submit" class="btn btn-info" value="Login">
                         {{ form_end(form) }}
                     {% endif %}
 
@@ -67,7 +67,7 @@
             {#<div class="col-6 col-sm-auto"><span class="btn btn-info">auto</span></div>#}
             {#<div class="col"><span class="btn btn-info w-100">auto</span></div>#}
 
-        </div>
+        {#</div>#}
 
-    </div>
+    {#</div>#}
 {% endblock %}

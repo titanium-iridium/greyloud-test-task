@@ -12,7 +12,7 @@ security:
         in_memory:
             memory:
                 users:
-                    test:
+                    test@mail.dom:
                         password: test
                         roles: [ROLE_USER, ROLE_ADMIN]
 
@@ -89,7 +89,7 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         
 #        - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/task, roles: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/.+, roles: IS_AUTHENTICATED_REMEMBERED }

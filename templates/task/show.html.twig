@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task #{{ task.id }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('task_index') }}">&laquo; back to list</a><br><br>
+    
+    <h1>Task #{{ task.id }}</h1>
+
+    Title: {{ task.title }}
+    {#<hr>#}
+    <div class="panel">
+        <div class="panel-head">Comments</div>
+        {% for comment in task.comments %}
+            {#{% set comment = comment.longest_comment %}#}
+            <p>{{ comment.author }} | {{ comment.created ? comment.created|date('Y-m-d H:i:s') : '' }}</p>
+            <p>{{ comment.text }}</p>
+            <hr>
+        {% else %}
+            {#no comments yet#}
+            &nbsp;
+        {% endfor %}
+    
+    </div>
+    
+    {{ include('task/_comment_form.html.twig', {'form': commentForm, 'button_label': 'Save'}) }}
+    
+    {#<table class="table table-bordered">#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Title</th>#}
+                {#<td>{{ task.title }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Created</th>#}
+                {#<td>{{ task.created ? task.created|date('Y-m-d H:i:s') : '' }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Updated</th>#}
+                {#<td>{{ task.updated ? task.updated|date('Y-m-d H:i:s') : '' }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+    <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-info">Edit</a>
+
+    {{ include('task/_delete_form.html.twig') }}
+{% endblock %}

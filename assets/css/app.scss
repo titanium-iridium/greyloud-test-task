@@ -4,3 +4,13 @@
 
 // BS 4
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 1.3em;
+}
+
+.form-control-label {
+  font-weight: 600;
+  text-shadow: 1px 0 #bbb;
+}

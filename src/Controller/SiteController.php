@@ -56,41 +56,41 @@ class SiteController extends Controller
         ));
     }
 
-    /**
-     * @Route("/login", name="site_login")
-     */
-    public function login(Request $request, AuthenticationUtils $authenticationUtils)
-    {
-        // redirect to site index if user already logged in
-        $context = $this->container->get('security.authorization_checker');
-        if ($context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirectToRoute('site_index');
-        }
-
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-//        $user = new User();
-//        $user->setUsername($lastUsername ?? '');
-//        $user->setDueDate(new \DateTime('tomorrow'));
-        
-        $form = $this->createForm(LoginType::class);
-
-//        $form = $this->createFormBuilder($user)
-//            ->add('username', TextType::class)
-//            ->add('password', PasswordType::class)
-//            ->add('submit', SubmitType::class, array('label' => 'Login'))
-//            ->getForm();
-
-        return $this->render('site/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error' => $error,
-            'form' => $form->createView(),
-        ));
-    }
+//    /**
+//     * @Route("/login", name="site_login")
+//     */
+//    public function login(Request $request, AuthenticationUtils $authenticationUtils)
+//    {
+//        // redirect to site index if user already logged in
+//        $context = $this->container->get('security.authorization_checker');
+//        if ($context->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+//            return $this->redirectToRoute('site_index');
+//        }
+//
+//        // get the login error if there is one
+//        $error = $authenticationUtils->getLastAuthenticationError();
+//
+//        // last username entered by the user
+//        $lastUsername = $authenticationUtils->getLastUsername();
+//
+////        $user = new User();
+////        $user->setUsername($lastUsername ?? '');
+////        $user->setDueDate(new \DateTime('tomorrow'));
+//        
+//        $form = $this->createForm(LoginType::class);
+//
+////        $form = $this->createFormBuilder($user)
+////            ->add('username', TextType::class)
+////            ->add('password', PasswordType::class)
+////            ->add('submit', SubmitType::class, array('label' => 'Login'))
+////            ->getForm();
+//
+//        return $this->render('site/login.html.twig', array(
+//            'last_username' => $lastUsername,
+//            'error' => $error,
+//            'form' => $form->createView(),
+//        ));
+//    }
 
     /**
      * @Route("/register", name="site_register")

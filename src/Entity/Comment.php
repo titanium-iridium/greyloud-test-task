@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="`comment`")
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  */
 class Comment
@@ -28,7 +29,7 @@ class Comment
     private $text;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $created;
 
@@ -37,6 +38,12 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $task;
+
+
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime('now'));
+    }
 
     public function getId()
     {
@@ -67,12 +74,12 @@ class Comment
         return $this;
     }
 
-    public function getCreated(): ?\DateTimeImmutable
+    public function getCreated(): ?\DateTimeInterface
     {
         return $this->created;
     }
 
-    public function setCreated(\DateTimeImmutable $created): self
+    public function setCreated(\DateTimeInterface $created): self
     {
         $this->created = $created;
 
