@@ -2,7 +2,10 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        App\Entity\User: bcrypt
+
+#        App\Entity\User: bcrypt
+#       using ugly plain text password encoding just for dev convenience, it shouldn't be used in real projects
+        App\Entity\User: plaintext
 
     providers:
         user_provider:
