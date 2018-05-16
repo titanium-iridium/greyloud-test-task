@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
@@ -21,6 +23,7 @@ class Task
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -138,14 +141,6 @@ class Task
         return $this->comments;
     }
     
-    /**
-     * @return null|Comment
-     */
-//    public function getLongestComment(): Comment
-//    {
-//        $this->comments;
-//    }
-
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -167,6 +162,29 @@ class Task
         }
 
         return $this;
+    }
+    
+    /**
+     * @Assert\Callback
+     * 
+     * Note: Actually this validator will never generate a violation 
+     * as the duplicates will be automatically droped from executors collection in Form::submit
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        // check if no duplicates among executors
+        $assignedExecs = [];
+        foreach($this->getExecutors() as $exec) {
+            $id = $exec->getId();
+            /** @var User $exec */
+            if (isset($assignedExecs[$id])) {
+                $context->buildViolation('No duplicates allowed in executors list!')
+                    ->atPath('executors')
+                    ->addViolation();
+                break;
+            }
+            $assignedExecs[$id] = true;
+        }
     }
 
 }

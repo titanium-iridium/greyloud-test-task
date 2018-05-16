@@ -25,6 +25,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -57,7 +58,7 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->isActive = true;
+        $this->is_active = true;
         $this->comments = new ArrayCollection();
         $this->tasks = new ArrayCollection();
         // may not be needed, see section on salt below
@@ -138,8 +139,6 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt,
         ));
     }
 
@@ -150,8 +149,6 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
@@ -214,9 +211,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
     
-    /**
-     * Generates the magic method
-     */
     public function __toString(): string {
         return $this->username;
     }

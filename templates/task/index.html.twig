@@ -7,33 +7,25 @@
     
     <a href="{{ path('task_new') }}" class="btn btn-info">Create task</a><br><br>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-tasks">
         <thead>
             <tr>
-                {#<th>Id</th>#}
                 <th>Title</th>
-                <th>Longest comment author/length</th>
-                {#<th>Created</th>#}
-                {#<th>Updated</th>#}
+                <th>Longest comment author and length</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for row in rows %}
-            {#{% set comment = task.comment %}#}
-            {#{% set comment = null %}#}
             <tr>
-                {#<td>{{ row.task.id }}</td>#}
                 <td>{{ row.task_title }}</td>
-                <td>
+                <td class="comments">
                     {% if row.comment_author %}
-                        {{ row.comment_author }} / {{ row.comment_text_length }}
+                        {{ row.comment_author }} [{{ row.comment_text_length }}]
                     {% else %}
-                        no comments
+                        <small>- no comments -</small>
                     {% endif %}
                 </td>
-                {#<td>{{ task.created ? task.created|date('Y-m-d H:i:s') : '' }}</td>#}
-                {#<td>{{ task.updated ? task.updated|date('Y-m-d H:i:s') : '' }}</td>#}
                 <td>
                     &bull; <a href="{{ path('task_show', {'id': row.task_id}) }}">show</a><br>
                     &bull; <a href="{{ path('task_edit', {'id': row.task_id}) }}">edit</a>

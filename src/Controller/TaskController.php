@@ -4,11 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Task;
-use App\Form\CommentType;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,8 +33,8 @@ class TaskController extends Controller
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
-        // this one for dev/test purposes
-//        $form->get('title')->addError(new FormError('error message'));
+        // for dev/test purposes
+//        $form->get('title')->addError(new FormError('test error message'));
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -61,24 +59,29 @@ class TaskController extends Controller
         $comment->setTask($task);
         $comment->setAuthor($this->getUser());
         
-        $form = $this->createForm(CommentType::class, $comment);
+        $form = $this->createFormBuilder($comment)->add('text', null, ['label' => 'Post a comment'])->getForm();
+        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // I know that it should be Comment controller that handles POST request of this form.
-            // But i feel too lazy to create controller just for one simple action (at least for the test task).
+            // actually it should be Comment controller that handles POST request of this form
+            // but i feel too lazy to create controller just for one simple action (at least for the test task)
             $em = $this->getDoctrine()->getManager(); 
             $em->persist($comment);
             $em->flush();
 
-            // redirect approach: generates extra HTTP request (302 Found, Location: ... etc)
-//            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
+            // redirect approach
+            // pros: clears the POST (no res-submit on browser refresh)
+            // cons: generates extra HTTP request (302 Found, Location: ... etc)
+            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
             
             // no redirect approach
+            /*
             $comment = new Comment();
             $comment->setTask($task);
             $comment->setAuthor($this->getUser());
             $form = $this->createForm(CommentType::class, $comment);
+            */
         }
 
         return $this->render('task/show.html.twig', ['task' => $task, 'commentForm' => $form->createView()]);

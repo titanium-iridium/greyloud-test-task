@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Simple task manager{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+    {% block stylesheets %}{% endblock %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+    {% block headJavascripts %}{% endblock %}
+    
 </head>
-<body class="container">
+<body class="container m-5">
+
 {% include 'nav.html.twig' %}
 {% for type, messages in app.flashes %}
     {% for message in messages %}
@@ -15,9 +19,9 @@
         </div>
     {% endfor %}
 {% endfor %}
-        
+
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-<script src="{{ asset('build/js/app.js') }}"></script>
+
+{% block bodyBottomJavascripts %}{% endblock %}
 </body>
 </html>

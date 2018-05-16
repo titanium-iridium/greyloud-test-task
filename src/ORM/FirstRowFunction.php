@@ -8,8 +8,7 @@ use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
 /**
- * Doctrine does not support LIMIT in subqueries so we use custom DQL function:
- * FIRST_ROW(SELECT subquery)
+ * Doctrine does not support LIMIT in subqueries so we imlement custom function: FIRST_ROW(SELECT subquery)
  */
 class FirstRowFunction extends FunctionNode
 {

@@ -1,5 +1,20 @@
+{% form_theme form _self %}
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.title) }}
+    
+    {{ form_label(form.executors) }}
+    {{ form_errors(form.executors) }}
+    <ul class="task-executors list-group list-group-flush mb-5" 
+        data-prototype="{{ form_widget(form.executors.vars.prototype, {'attr': {'class': 'form-control-sm'}})|e('html_attr') }}">
+        {% for executor in form.executors %}
+            <li class="executor input-group mb-2">
+                {# TODO: Should we disable already assigned executor form widget (change disallowed, only remove/add allowed) ? Not sure. #}
+                {{ form_widget(executor, {'disabled': false, 'attr': {'class': 'form-control-sm'}}) }} 
+            </li>
+        {% endfor %}
+    </ul>
+
     <input type="submit" class="btn btn-info" value="{{ button_label|default('Save') }}">
-    <input type="reset" class="btn btn-warning ml-3" value="Reset">
+    {#<input type="reset" class="btn btn-warning ml-3" value="Reset">#}
 {{ form_end(form) }}

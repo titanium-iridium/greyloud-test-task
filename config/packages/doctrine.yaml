@@ -30,4 +30,5 @@ doctrine:
                 alias: App
         dql:
             string_functions:
+                # see \App\ORM\FirstRowFunction
                 FIRST_ROW: App\ORM\FirstRowFunction
